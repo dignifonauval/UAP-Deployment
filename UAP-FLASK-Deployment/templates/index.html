@@ -1,98 +1,181 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href={{url_for('static' , filename = 'css/normalize.css')}}>
-        <link rel="stylesheet" href={{url_for('static' , filename = 'css/grid.css')}}>
-        <link rel='stylesheet' href={{url_for('static' , filename = 'css/style.css')}}>
-        
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet" type='text/css'>
-        <title>UAP</title>
-        <meta name="keywords" content="cutom file input, styling, label, cross-browser, accessible, input type file" />
-		
-		<style>
-			.content {
-			  max-width: 500px;
-			  margin: auto;
-			  }
-			.bg-img{
-				width: 100%;
-				height: 100vh;
-				background-image:linear-gradient(rgba(0, 0, 0, 0.71),rgba(0, 0, 0, 0.7));
-				background-size: cover;
-				background-position: center;
-			}
-			
-		</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap"
+        rel="stylesheet" type='text/css'>
+    <title>UAP - Modern Edition</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+            display: flex;
+        }
 
+        .sidebar {
+            width: 120px;
+            height: 100%;
+            background-color: #007bff;
+            padding-top: 20px;
+            position: fixed;
+            width: 120px;
+            height: 100%;
+            background-color: #007bff;
+            padding-top: 20px;
+            position: fixed;
+            transition: width 0.3s, padding 0.3s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+        }
 
-    </head>
-	
-    <body>
-	<div class="bg-img">
-	<div class="content">
-        <div class = "index-main">
-        <br><br>
-        <div style = "width : 100%; padding-top : 5%;">
-            <div class = "header-content">
-                 <h1 style = "text-align: center;color: white"><span class="header-content-text">UAP</span></h1>
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: block;
+            padding: 10px 10px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #0056b3;
+        }
+
+        .sidebar:hover {
+            width: 150px; /* Expand the width on hover */
+            padding-left: 10px; /* Add some padding on the left on hover */
+        }
+
+        .content {
+            margin-left: 120px;
+            max-width: calc(100% - 120px);
+            width: 100%;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content-text {
+            font-size: 3em;
+            letter-spacing: 3px;
+            color: #007bff;
+        }
+
+        .upload-section {
+            margin-top: 20px;
+        }
+
+        .file-form-input,
+        .link-form-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            color: #495057;
+            outline: none;
+        }
+
+        .btn-lg {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-lg:hover {
+            background-color: #0056b3;
+        }
+
+        .header-content-info {
+            font-size: 0.9em;
+            color: red;
+            margin-top: 15px;
+        }
+
+        .footer {
+            margin-top: 30px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #495057;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="content">
+        <div class="index-main">
+            <br><br>
+            <div style="width: 100%;">
+                <div class="header-content">
+                    <h5 style="text-align: center;"><span class="header-content-text">UAP-APP Deployment</h5>
+                </div>
+            </div>
+
+            <div class="upload-section">
+                <p>Upload Photo in your pc.</p>
+                <div class="upload-file">
+                    <form class="file-form" action="/success" method="post" enctype="multipart/form-data">
+                        <input class="file-form-input" type="file" name="file" />
+                        <button class="btn btn-lg">Upload</button>
+                    </form>
+                </div>
+                <br>
+                <div class="uploadOR">
+                    <span>Insert Photo via Website Link.</span>
+                </div>
+                <br>
+                <div class="upload-link">
+                    <form class="link-form" action="/success" method="post" enctype="multipart/form-data">
+                        <input class="link-form-input" type="text" maxlength="1000" name="link"
+                            placeholder="Paste the image URL" />
+                        <button class="btn btn-lg">Upload</button>
+                    </form>
+                </div>
+                <div class="header-content-sub">
+                    <p class="header-content-info">{{error}}</p>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="header-content-sub">
+                    <p>The project relies on a dataset comprising only 10 images, emphasizing a relatively 
+                    small and focused collection of visual data. In the context of machine learning and data science, 
+                    a dataset of this size may be chosen for reasons such as quick experimentation, concept demonstration, 
+                    or specific project constraints. However, it's worth noting that the efficacy of machine learning models 
+                    often hinges on larger and more diverse datasets, enabling the model to learn comprehensive patterns. In 
+                    this instance, the project's scope may be constrained by the limited dataset, potentially impacting 
+                    the model's ability to generalize across a broader range of scenarios or patterns.</p>
+                </div>
             </div>
         </div>
+    </div>
+</body>
 
-        <div class="upload-section">
-
-            <div class="upload-file">
-                <form class = "file-form" action="/success" method="post", enctype="multipart/form-data">
-                    <input class="file-form-input" type="file" , name = "file"/>
-                    <button class="btn btn-lg">Upload</button>
-                </form>
-            </div>
-            <br>
-            <div class="uploadOR">
-                <span>OR</span>
-            </div>
-            <br>
-            <div class="upload-link">
-                <form class = "link-form" action="/success" method="post", enctype="multipart/form-data">
-                    <input class="link-form-input" type="text" ,maxlength="1000" , name = "link" placeholder="Paste the image URL"/>
-                    <button class="btn btn-lg">Proceed</button>
-                </form>
-            </div>
-            <div class = "header-content-sub">
-                    <p style = "text-align: center; margin-top: 15px;color: red" class="header-content-info">{{error}}</p>
-            </div>
-        </div>
-
-        <div class = "footer">
-            <div class = "header-content-sub">
-                    <p style = "text-align: center;color: white" class="header-content-info">The dataset that used in this project is 10 Images. The model was trained with CNN architecture.
-                        Below you can see the classes of the dataset's.</p>
-            </div>
-            <div class = "header-content-sub">
-                        <ul style = "text-align: center;color:#f4f7c5; width:30%;" class="header-content-info">
-                          <li>Dog</li>
-                          <li>Cat</li>
-                          <li>Horse</li>
-                          <li>Deer</li>
-                          <li>Frog</li>
-                        </ul>
-                            <ul style = "text-align: center;color:#f4f7c5; width:30%;" class="header-content-info">
-                          <li>Airplane</li>
-                          <li>Truck</li>
-                          <li>Automobile</li>
-                          <li>Ship</li>
-                          <li>Bird</li>
-                        </ul>
-
-            </div>
-        </div>
-	     </div>  
-	</div>			 
-	</div>
-    </body>
 </html>

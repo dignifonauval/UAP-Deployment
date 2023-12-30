@@ -1,75 +1,219 @@
 <!DOCTYPE html>
-<html lang="eng">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href={{url_for('static' , filename = 'css/normalize.css')}}>
-        <link rel="stylesheet" href={{url_for('static' , filename = 'css/grid.css')}}>
-        <link rel='stylesheet' href={{url_for('static' , filename = 'css/styleSucc.css')}}>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={{url_for('static' , filename = 'css/normalize.css')}}>
+    <link rel="stylesheet" href={{url_for('static' , filename = 'css/grid.css')}}>
+    <link rel='stylesheet' href={{url_for('static' , filename = 'css/style.css')}}>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap"
+        rel="stylesheet" type='text/css'>
+    <title>Results Page - Stylish Edition</title>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 120px;
+            height: 100%;
+            background-color: #007bff;
+            padding-top: 20px;
+            position: fixed;
+            width: 120px;
+            height: 100%;
+            background-color: #007bff;
+            padding-top: 20px;
+            position: fixed;
+            transition: width 0.3s, padding 0.3s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: block;
+            padding: 10px 10px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #0056b3;
+        }
+
+        .sidebar:hover {
+            width: 150px; /* Expand the width on hover */
+            padding-left: 10px; /* Add some padding on the left on hover */
+        }
+
+        .content {
+            margin-left: 120px;
+            max-width: calc(100% - 120px);
+            width: 100%;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content-text {
+            font-size: 3em;
+            letter-spacing: 3px;
+            color: #007bff;
+        }
+
+        .upload-section {
+            margin-top: 20px;
+        }
+
+        .file-form-input,
+        .link-form-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            color: #495057;
+            outline: none;
+        }
+
+        .btn-lg {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-lg:hover {
+            background-color: #0056b3;
+        }
+
+        .header-content-info {
+            font-size: 0.9em;
+            color: red;
+            margin-top: 15px;
+        }
+
+        .footer {
+            margin-top: 30px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #495057;
+        }
         
-        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet" type='text/css'>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <title>Results Page</title>
+        .table-bordered {
+        width: 70%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        }
 
-        <style type="text/css">
-            th{
-                text-align: center;
-                font-size: 20px;
-            }
+        .table-custom {
+        background-color: #343a40; /* Dark background color */
+        color: #fff; /* Text color */
+        margin: 0 auto; /* Center the table */
+        border-radius: 10px; /* Rounded corners */
+        overflow: hidden; /* Hide overflowing content */
+    }
 
-            td{
-                text-align: center;
-                font-size: 18px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class = "second-main" style = "height: 100% , width : 100%;">
-            <nav>
-                <ul style = "padding-right: 2%;" class = "main-nav">
-                    <li><a href ="/">HomePage</a></li>                
-                </ul>
-               
-            </nav>
-            <div class = "header">
-                <row style = "width: 100% ; display: flex; justify-content: center;">
-                    <h3 class="header-text">Uploaded Image</h3>
-                </row>
-                <row style = "width: 100% ; display: flex; justify-content: center;">
-                    <img class = "result-img" src={{url_for('static', filename = 'images/'+ img)}}>
-                </row>
+    .table-bordered th,
+    .table-bordered td {
+        border: 2px solid #ffffff; /* Border color */
+        padding: 15px; /* Increase padding */
+        text-align: center;
+        vertical-align: middle; /* Center the content vertically */
+        font-weight: bold; /* Bold text */
+    }
+
+    .table-bordered th {
+        background-color: #007bff; /* Header background color */
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <a href="/">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="content">
+        <div class="index-main">
+            <br>
+            <div style="width: 100%;">
+                <div class="header-content">
+                    <h5 style="text-align: center;"><span class="header-content-text">UAP-APP Deployment</h5>
+                </div>
             </div>
 
-            <div class = "info">
-            
-                <row style = "width: 100% ; display: flex; justify-content: center;">
-                    <h3 class = "header-text">Model Prediction</h3>
-                </row>
-                <row style = "width: 100%; display: flex; justify-content: center;">
-                    <table class="table-bordered text-light table-custom">
-                        <tr>
-                            <th>Rank</th>
-                            <th>Class</th>
-                            <th>Probability</th>
-                        </tr>
-                        <tr>
-                            <td>1st</td>
-                            <td>{{ predictions.class1 }}</td>
-                            <td>{{ predictions.prob1 }} %</td>
-                          </tr>
-                          <tr>
-                            <td>2nd</td>
-                            <td>{{ predictions.class2 }}</td>                                                         
-                            <td>{{ predictions.prob2 }} %</td>                                                      
-                        </tr>                                                                                                               
-                        <tr>
-                            <td>3rd</td>
-                            <td>{{ predictions.class3 }}</td>
-                            <td>{{ predictions.prob3 }} %</td>
-                          </tr>
-                    </table>
-                </row>
+            <div class="upload-section">
+                <h2>Uploaded Image</h2>
+                <img src={{url_for('static', filename = 'images/'+ img)}} style="height: 50%; width: 30%; border-radius: 10px; margin-top: 20px;">
+            </div>
+
+            <div class="upload-section">
+                <h2>Prediction Result</h2>
+                <table class="table-bordered text-light table-custom" style="width: 70%; margin-top: 20px;">
+                    <tr>
+                        <th>Rank</th>
+                        <th>Class</th>
+                        <th>Probability</th>
+                    </tr>
+                    <tr>
+                        <td>1st</td>
+                        <td>{{ predictions.class1 }}</td>
+                        <td>{{ predictions.prob1 }} %</td>
+                    </tr>
+                    <tr>
+                        <td>2nd</td>
+                        <td>{{ predictions.class2 }}</td>
+                        <td>{{ predictions.prob2 }} %</td>
+                    </tr>
+                    <tr>
+                        <td>3rd</td>
+                        <td>{{ predictions.class3 }}</td>
+                        <td>{{ predictions.prob3 }} %</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="footer">
+                <div class="header-content-sub">
+                    <p>The project relies on a dataset comprising only 10 images, emphasizing a relatively 
+                    small and focused collection of visual data. In the context of machine learning and data science, 
+                    a dataset of this size may be chosen for reasons such as quick experimentation, concept demonstration, 
+                    or specific project constraints. However, it's worth noting that the efficacy of machine learning models 
+                    often hinges on larger and more diverse datasets, enabling the model to learn comprehensive patterns. In 
+                    this instance, the project's scope may be constrained by the limited dataset, potentially impacting 
+                    the model's ability to generalize across a broader range of scenarios or patterns.</p>
+                </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
